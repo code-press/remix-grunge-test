@@ -2,6 +2,22 @@ import { Link } from "@remix-run/react";
 
 import { useOptionalUser } from "~/utils";
 
+import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
+import { DynamoDBDocumentClient, ScanCommand } from "@aws-sdk/lib-dynamodb";
+
+export const loader = async ({ request }) => {
+  const client = new DynamoDBClient({});
+
+  const dynamo = DynamoDBDocumentClient.from(client);
+
+  const tableName = "Grungetest1eecStaging-NoteTable-1QS9E3AO8LQ8W";
+  console.log("got my client");
+
+  const notes = await dynamo.send(new ScanCommand({ TableName: tableName }));
+  console.log(notes);
+  return notes;
+};
+
 export default function Index() {
   const user = useOptionalUser();
   return (
