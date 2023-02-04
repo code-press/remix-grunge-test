@@ -5,9 +5,9 @@ grungetest-1eec
 architecture x86_64
 runtime nodejs18.x
 timeout 10
-#policies 
-#  architect-default-policies 
-#  AWSLambdaVPCAccessExecutionRole
+policies 
+  architect-default-policies 
+  AWSLambdaVPCAccessExecutionRole
 
 @http
 /*
