@@ -4,13 +4,18 @@ import invariant from "tiny-invariant";
 
 export async function getUserById(id) {
   const db = await arc.tables();
-  const result = await db.user.query({
-    KeyConditionExpression: "pk = :pk",
-    ExpressionAttributeValues: { ":pk": id },
-  });
 
-  const [record] = result.Items;
-  if (record) return { id: record.pk, email: record.email };
+  try {
+    const result = await db.user.query({
+      KeyConditionExpression: "pk = :pk",
+      ExpressionAttributeValues: { ":pk": id },
+    });
+
+    const [record] = result.Items;
+    if (record) return { id: record.pk, email: record.email };
+  } catch (error) {
+    console.log("error getUserById", error);
+  }
   return null;
 }
 
