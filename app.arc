@@ -26,3 +26,7 @@ password
 note
   pk *String  # userId
   sk **String # noteId
+
+grunge_sessions
+  _idx *String
+  _ttl TTL
