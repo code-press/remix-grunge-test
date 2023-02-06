@@ -10,11 +10,17 @@ export const loader = async ({ request }) => {
 
   const dynamo = DynamoDBDocumentClient.from(client);
 
-  const tableName = "Grungetest1eecStaging-NoteTable-1QS9E3AO8LQ8W";
+  const notesTable = "Grungetest1eecStaging-NoteTable-1QS9E3AO8LQ8W";
+  const sessionsTable =
+    "Grungetest1eecStaging-GrungeSessionsTable-Z1CCBJAM9FGV";
   console.log("got my client");
 
-  const notes = await dynamo.send(new ScanCommand({ TableName: tableName }));
+  const notes = await dynamo.send(new ScanCommand({ TableName: notesTable }));
+  const sessions = await dynamo.send(
+    new ScanCommand({ TableName: sessionsTable })
+  );
   console.log(notes);
+  console.log(sessions);
   return notes;
 };
 

@@ -27,7 +27,7 @@ const sessionCookie = createCookie("__session", {
 
 const { getSession, commitSession, destroySession } =
   createDynamoTableSessionStorage({
-    table: "grunge_sessions",
+    table: "Grungetest1eecStaging-GrungeSessionsTable-Z1CCBJAM9FGV",
     idx: "_idx",
     ttl: "_ttl",
     cookie: sessionCookie,
